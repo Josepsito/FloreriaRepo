@@ -8,6 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class UsuarioMapper {
@@ -25,6 +26,10 @@ public class UsuarioMapper {
                 usuario.getTelefono(),
                 usuario.getDireccion()
         );
+    }
+
+    public List<UsuarioResponseDTO> toDTOList(List<Usuario> usuarios) {
+        return usuarios.stream().map(this::toDTO).toList();
     }
 
     public Usuario toEntity (UsuarioRequestDTO usuarioDTO) {

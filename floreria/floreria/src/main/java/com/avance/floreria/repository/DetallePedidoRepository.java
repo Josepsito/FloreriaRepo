@@ -1,4 +1,7 @@
 package com.avance.floreria.repository;
 
-public interface DetallePedidoRepository {
+import com.avance.floreria.entity.DetallePedido;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface DetallePedidoRepository extends JpaRepository<DetallePedido, Long> {
 }

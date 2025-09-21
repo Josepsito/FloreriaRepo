@@ -22,11 +22,5 @@ public class DetallePedidoMapper {
         return pedidos.stream().map(this::toDTO).toList();
     }
 
-    public DetallePedido toEntity(PedidoRequestDTO pedidoRequestDTO){
-        DetallePedido detallePedido = new DetallePedido();
-        detallePedido.setCantidad(pedidoRequestDTO.cantidad());
-
-        return detallePedido;
-    }
 
 }

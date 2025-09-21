@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class ProductoMapper {
@@ -20,6 +21,10 @@ public class ProductoMapper {
                 producto.getImagenURL(),
                 producto.getCategoria().getId()
         );
+    }
+
+    public List<ProductoResponseDTO> toDTOList(List<Producto> productos) {
+        return productos.stream().map(this::toDTO).toList();
     }
 
     public Producto toEntity(ProductoRequestDTO productoDTO) {

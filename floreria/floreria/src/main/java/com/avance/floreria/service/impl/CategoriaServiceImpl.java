@@ -1,4 +1,32 @@
 package com.avance.floreria.service.impl;
 
-public class CategoriaServiceImpl {
+import com.avance.floreria.dto.response.CategoriaResponseDTO;
+import com.avance.floreria.entity.Categoria;
+import com.avance.floreria.mapper.CategoriaMapper;
+import com.avance.floreria.repository.CategoriaRepository;
+import com.avance.floreria.service.CategoriaService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
+public class CategoriaServiceImpl implements CategoriaService {
+
+    private final CategoriaRepository categoriaRepository;
+    private final CategoriaMapper categoriaMapper;
+
+    @Override
+    public CategoriaResponseDTO findById(int id) {
+        Categoria categoria = categoriaRepository.findById(id).orElseThrow(()->new RuntimeException("Categoria no encontrada"));
+        return categoriaMapper.ToDTO(categoria);
+    }
+
+    @Override
+    public List<CategoriaResponseDTO> findAll() {
+        List<Categoria> categorias = categoriaRepository.findAll();
+        return categoriaMapper.ToDTOList(categorias);
+    }
+
 }
