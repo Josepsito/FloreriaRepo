@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-catalogo',
   standalone: true,
   imports: [CommonModule, RouterModule],
-  templateUrl: './home.html',
-  styleUrls: ['./home.css']
+  templateUrl: './catalogo.html',
+  styleUrls: ['./catalogo.css']
 })
-export class Home { }
+export class Catalogo { }
