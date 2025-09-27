@@ -4,6 +4,8 @@ import com.avance.floreria.dto.response.CarritoResponseDTO;
 import com.avance.floreria.entity.Carrito;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class CarritoMapper {
 
@@ -13,6 +15,10 @@ public class CarritoMapper {
                 carrito.getProducto().getId(),
                 carrito.getCantidad()
         );
+    }
+
+    public List<CarritoResponseDTO> toDTOList (List<Carrito> carritos){
+        return carritos.stream().map((this::toDTO)).toList();
     }
 
 }

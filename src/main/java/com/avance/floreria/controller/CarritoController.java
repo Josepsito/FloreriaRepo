@@ -5,6 +5,8 @@ import com.avance.floreria.service.CarritoService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/carritos")
 
@@ -21,5 +23,9 @@ public class CarritoController {
         return ResponseEntity.ok(carritoService.findById(id));
     }
 
+    @GetMapping()
+    public  ResponseEntity<List<CarritoResponseDTO>> verTodosLosCarritos(){
+        return ResponseEntity.ok(carritoService.findAll());
+    }
 
 }

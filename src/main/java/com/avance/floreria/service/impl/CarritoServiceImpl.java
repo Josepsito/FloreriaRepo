@@ -7,6 +7,8 @@ import com.avance.floreria.repository.CarritoRepository;
 import com.avance.floreria.service.CarritoService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CarritoServiceImpl implements CarritoService {
 
@@ -22,6 +24,12 @@ public class CarritoServiceImpl implements CarritoService {
     public CarritoResponseDTO findById(int id) {
         Carrito carrito = carritoRepository.findById(id).orElseThrow(()->new RuntimeException("No existe un carrito con ese ID"));
         return carritoMapper.toDTO(carrito);
+    }
+
+    @Override
+    public List<CarritoResponseDTO> findAll() {
+        List<Carrito> listaCarrito=carritoRepository.findAll();
+        return carritoMapper.toDTOList(listaCarrito);
     }
 
 
