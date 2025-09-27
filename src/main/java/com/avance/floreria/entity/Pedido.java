@@ -28,7 +28,6 @@ public class Pedido {
     @JoinColumn(name = "UsuarioID", nullable = false)
     private Usuario usuario;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "FechaPedido")
     private LocalDate fechaPedido;
 

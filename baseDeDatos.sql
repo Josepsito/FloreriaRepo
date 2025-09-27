@@ -1,54 +1,55 @@
 CREATE DATABASE FloreriaDB;
-
-GO
 USE FloreriaDB;
-GO
-
 
 CREATE TABLE Usuarios (
-    UsuarioID INT IDENTITY(1,1) PRIMARY KEY,
-    Nombre NVARCHAR(100) NOT NULL,
-    Email NVARCHAR(100) UNIQUE NOT NULL,
-    PasswordHash NVARCHAR(200) NOT NULL,
-    Telefono NVARCHAR(20),
-    Direccion NVARCHAR(200)
+    UsuarioID INT AUTO_INCREMENT PRIMARY KEY,
+    Nombre VARCHAR(100) NOT NULL,
+    Email VARCHAR(100) UNIQUE NOT NULL,
+    PasswordHash VARCHAR(200) NOT NULL,
+    Telefono VARCHAR(20),
+    Direccion VARCHAR(200)
 );
 
 CREATE TABLE Categorias (
-    CategoriaID INT IDENTITY(1,1) PRIMARY KEY,
-    Nombre NVARCHAR(50) NOT NULL
+    CategoriaID INT AUTO_INCREMENT PRIMARY KEY,
+    Nombre VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE Productos (
-    ProductoID INT IDENTITY(1,1) PRIMARY KEY,
-    Nombre NVARCHAR(100) NOT NULL,
-    Descripcion NVARCHAR(MAX),
+    ProductoID INT AUTO_INCREMENT PRIMARY KEY,
+    Nombre VARCHAR(100) NOT NULL,
+    Descripcion TEXT,
     Precio DECIMAL(10,2) NOT NULL,
     Stock INT NOT NULL DEFAULT 0,
-    ImagenURL NVARCHAR(300),
-    CategoriaID INT FOREIGN KEY REFERENCES Categorias(CategoriaID)
+    ImagenURL VARCHAR(300),
+    CategoriaID INT,
+    FOREIGN KEY (CategoriaID) REFERENCES Categorias(CategoriaID)
 );
 
 CREATE TABLE Carrito (
-    CarritoID INT IDENTITY(1,1) PRIMARY KEY,
-    UsuarioID INT FOREIGN KEY REFERENCES Usuarios(UsuarioID),
-    ProductoID INT FOREIGN KEY REFERENCES Productos(ProductoID),
-    Cantidad INT NOT NULL
+    CarritoID INT AUTO_INCREMENT PRIMARY KEY,
+    UsuarioID INT,
+    ProductoID INT,
+    Cantidad INT NOT NULL,
+    FOREIGN KEY (UsuarioID) REFERENCES Usuarios(UsuarioID),
+    FOREIGN KEY (ProductoID) REFERENCES Productos(ProductoID)
 );
 
 CREATE TABLE Pedidos (
-    PedidoID INT IDENTITY(1,1) PRIMARY KEY,
-    UsuarioID INT FOREIGN KEY REFERENCES Usuarios(UsuarioID),
-    FechaPedido DATETIME DEFAULT GETDATE(),
-    Estado NVARCHAR(50) DEFAULT 'Pendiente',
-    Total DECIMAL(10,2) DEFAULT 0
+    PedidoID INT AUTO_INCREMENT PRIMARY KEY,
+    UsuarioID INT,
+    FechaPedido DATETIME DEFAULT CURRENT_TIMESTAMP,
+    Estado VARCHAR(50) DEFAULT 'Pendiente',
+    Total DECIMAL(10,2) DEFAULT 0,
+    FOREIGN KEY (UsuarioID) REFERENCES Usuarios(UsuarioID)
 );
 
-
 CREATE TABLE DetallePedido (
-    DetalleID INT IDENTITY(1,1) PRIMARY KEY,
-    PedidoID INT FOREIGN KEY REFERENCES Pedidos(PedidoID),
-    ProductoID INT FOREIGN KEY REFERENCES Productos(ProductoID),
+    DetalleID INT AUTO_INCREMENT PRIMARY KEY,
+    PedidoID INT,
+    ProductoID INT,
     Cantidad INT NOT NULL,
-    PrecioUnitario DECIMAL(10,2) NOT NULL
+    PrecioUnitario DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (PedidoID) REFERENCES Pedidos(PedidoID),
+    FOREIGN KEY (ProductoID) REFERENCES Productos(ProductoID)
 );
