@@ -13,26 +13,26 @@ public class Producto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ProductoID")
+    @Column(name = "productoid")
     private Long id;
 
-    @Column(name = "Nombre", nullable = false, length = 100)
+    @Column(name = "nombre", nullable = false, length = 100)
     private String nombre;
 
-    @Column(name = "Descripcion")
+    @Column(name = "descripcion")
     private String descripcion;
 
-    @Column(name = "Precio", nullable = false)
+    @Column(name = "precio", nullable = false)
     private BigDecimal precio;
 
-    @Column(name = "Stock", nullable = false)
+    @Column(name = "stock", nullable = false)
     private Integer stock;
 
-    @Column(name = "ImagenURL", length = 300)
+    @Column(name = "imagenURL", length = 300)
     private String imagenURL;
 
     @ManyToOne
-    @JoinColumn(name = "CategoriaID")
+    @JoinColumn(name = "categoriaid")
     private Categoria categoria;
 
     @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)

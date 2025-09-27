@@ -12,22 +12,22 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "UsuarioID")
+    @Column(name = "usuarioid")
     private Long id;
 
-    @Column(name = "Nombre", nullable = false, length = 100)
+    @Column(name = "nombre", nullable = false, length = 100)
     private String nombre;
 
-    @Column(name = "Email", nullable = false, unique = true, length = 100)
+    @Column(name = "email", nullable = false, unique = true, length = 100)
     private String email;
 
-    @Column(name = "PasswordHash", nullable = false, length = 200)
+    @Column(name = "password_hash", nullable = false, length = 200)
     private String passwordHash;
 
-    @Column(name = "Telefono", length = 20)
+    @Column(name = "telefono", length = 20)
     private String telefono;
 
-    @Column(name = "Direccion", length = 200)
+    @Column(name = "direccion", length = 200)
     private String direccion;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)

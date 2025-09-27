@@ -14,20 +14,20 @@ public class Pedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "PedidoID")
+    @Column(name = "pedidoid")
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "UsuarioID", nullable = false)
+    @JoinColumn(name = "usuarioid", nullable = false)
     private Usuario usuario;
 
-    @Column(name = "FechaPedido")
+    @Column(name = "fecha_pedido")
     private LocalDate fechaPedido;
 
-    @Column(name = "Estado", length = 50)
+    @Column(name = "estado", length = 50)
     private String estado;
 
-    @Column(name = "Total")
+    @Column(name = "total")
     private BigDecimal total;
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)

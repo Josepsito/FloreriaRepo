@@ -6,22 +6,20 @@ import jakarta.persistence.*;
 @Table(name = "Carrito")
 
 public class Carrito {
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "CarritoID")
+    @Column(name = "carritoid")
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "UsuarioID", nullable = false)
+    @JoinColumn(name = "usuarioid", nullable = false)
     private Usuario usuario;
 
     @ManyToOne
-    @JoinColumn(name = "ProductoID", nullable = false)
+    @JoinColumn(name = "productoid", nullable = false)
     private Producto producto;
 
-    @Column(name = "Cantidad", nullable = false)
+    @Column(name = "cantidad", nullable = false)
     private Integer cantidad;
 
     public Carrito(Long id, Usuario usuario, Producto producto, Integer cantidad) {
