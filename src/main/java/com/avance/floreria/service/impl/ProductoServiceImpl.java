@@ -6,17 +6,20 @@ import com.avance.floreria.entity.Producto;
 import com.avance.floreria.mapper.ProductoMapper;
 import com.avance.floreria.repository.ProductoRepository;
 import com.avance.floreria.service.ProductoService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class ProductoServiceImpl implements ProductoService {
 
     private final ProductoRepository productoRepository;
     private final ProductoMapper productoMapper;
+
+    public ProductoServiceImpl(ProductoRepository productoRepository, ProductoMapper productoMapper) {
+        this.productoRepository = productoRepository;
+        this.productoMapper = productoMapper;
+    }
 
     @Override
     public List<ProductoResponseDTO> obtenerTodosLosProductos(){

@@ -12,7 +12,6 @@ import com.avance.floreria.repository.PedidoRepository;
 import com.avance.floreria.repository.ProductoRepository;
 import com.avance.floreria.repository.UsuarioRepository;
 import com.avance.floreria.service.PedidoService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -21,13 +20,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class PedidoServiceImpl implements PedidoService {
 
     private final ProductoRepository productoRepository;
     private final PedidoRepository pedidoRepository;
     private final UsuarioRepository usuarioRepository;
     private final PedidoMapper pedidoMapper;
+
+    public PedidoServiceImpl(ProductoRepository productoRepository, PedidoRepository pedidoRepository, UsuarioRepository usuarioRepository, PedidoMapper pedidoMapper) {
+        this.productoRepository = productoRepository;
+        this.pedidoRepository = pedidoRepository;
+        this.usuarioRepository = usuarioRepository;
+        this.pedidoMapper = pedidoMapper;
+    }
 
     @Override
     public PedidoResponseDTO obtenerPedidoPorID(long id) {

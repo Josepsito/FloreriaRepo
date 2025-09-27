@@ -3,16 +3,18 @@ package com.avance.floreria.controller;
 import com.avance.floreria.dto.request.PedidoRequestDTO;
 import com.avance.floreria.dto.response.PedidoResponseDTO;
 import com.avance.floreria.service.PedidoService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/pedidos")
-@RequiredArgsConstructor
 public class PedidoController {
 
     private final PedidoService pedidoService;
+
+    public PedidoController(PedidoService pedidoService) {
+        this.pedidoService = pedidoService;
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<PedidoResponseDTO> obtenerPedido(@PathVariable long id) {

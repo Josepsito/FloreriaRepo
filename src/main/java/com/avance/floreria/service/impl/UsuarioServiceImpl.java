@@ -6,17 +6,21 @@ import com.avance.floreria.entity.Usuario;
 import com.avance.floreria.mapper.UsuarioMapper;
 import com.avance.floreria.repository.UsuarioRepository;
 import com.avance.floreria.service.UsuarioService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
+
 public class UsuarioServiceImpl implements UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
     private final UsuarioMapper usuarioMapper;
+
+    public UsuarioServiceImpl(UsuarioRepository usuarioRepository, UsuarioMapper usuarioMapper) {
+        this.usuarioRepository = usuarioRepository;
+        this.usuarioMapper = usuarioMapper;
+    }
 
     @Override
     public UsuarioResponseDTO obtenerUsuarioPorID(Long id){

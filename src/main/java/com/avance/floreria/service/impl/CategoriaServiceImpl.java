@@ -5,17 +5,20 @@ import com.avance.floreria.entity.Categoria;
 import com.avance.floreria.mapper.CategoriaMapper;
 import com.avance.floreria.repository.CategoriaRepository;
 import com.avance.floreria.service.CategoriaService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class CategoriaServiceImpl implements CategoriaService {
 
     private final CategoriaRepository categoriaRepository;
     private final CategoriaMapper categoriaMapper;
+
+    public CategoriaServiceImpl(CategoriaRepository categoriaRepository, CategoriaMapper categoriaMapper) {
+        this.categoriaRepository = categoriaRepository;
+        this.categoriaMapper = categoriaMapper;
+    }
 
     @Override
     public CategoriaResponseDTO findById(int id) {
