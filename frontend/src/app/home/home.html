@@ -1,8 +1,13 @@
 <app-header></app-header>
 
 <!-- Hero -->
-<section class="relative w-full h-[500px] bg-cover bg-center"
-         style="background-image: url('https://i.postimg.cc/j2BTQksj/banner-Flor-Rosa.png');">
+<section class="relative w-full h-[500px] overflow-hidden">
+  <div id="carousel" class="absolute inset-0 w-full h-full">
+    <img src="https://images.pexels.com/photos/30190562/pexels-photo-30190562.jpeg" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-100">
+    <img src="https://images.pexels.com/photos/33104577/pexels-photo-33104577.jpeg" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0">
+    <img src="https://images.pexels.com/photos/17001743/pexels-photo-17001743.jpeg" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0">
+  </div>
+
   <div class="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-white text-center">
     <h1 class="text-5xl font-bold mb-4">Flores frescas y únicas</h1>
     <p class="mb-6 text-lg">Haz tu pedido hoy y recíbelo en pocas horas</p>
