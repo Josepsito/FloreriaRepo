@@ -21,7 +21,6 @@ export class AdminAgregar {
 
   onSubmit() {
     console.log('Producto agregado:', this.producto);
-    alert(`Producto "${this.producto.nombre}" agregado (simulado).`);
     this.producto = { nombre: '', descripcion: '', precio: 0, imagen: '' };
   }
 }
