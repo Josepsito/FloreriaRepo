@@ -4,11 +4,13 @@ import { Catalogo } from './catalogo/catalogo';
 import { Blog } from './blog/blog';
 import { Novias } from './novias/novias';
 import { Contacto } from './contacto/contacto';
+import { Eventos } from './eventos/eventos';
 
 export const routes: Routes = [
   { path: '', component: Home },
   { path: 'catalogo', component: Catalogo },
   { path: 'blog', component: Blog },
   { path: 'novias', component: Novias },
-  { path: 'contacto', component: Contacto }
+  { path: 'contacto', component: Contacto },
+  { path: 'eventos', component: Eventos }
 ];
