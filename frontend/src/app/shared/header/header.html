@@ -1,0 +1,33 @@
+<header class="shadow sticky top-0 bg-white z-50">
+  <nav class="container mx-auto flex items-center justify-between py-4 px-6">
+    <div class="flex items-center gap-2 text-2xl font-bold">
+      <span class="material-symbols-outlined text-green-600">potted_plant</span>
+      Jardín Secreto
+    </div>
+    <ul class="hidden md:flex gap-6">
+      <li><a [routerLink]="['/']" class="hover:text-green-600">Inicio</a></li>
+      <li><a [routerLink]="['/catalogo']" class="hover:text-green-600">Catálogo</a></li>
+      <li><a [routerLink]="['/eventos']" class="hover:text-green-600">Eventos</a></li>
+      <li><a [routerLink]="['/novias']" class="hover:text-green-600">Novias</a></li>
+      <li><a [routerLink]="['/personaliza']" class="hover:text-green-600">Personaliza</a></li>
+      <li><a [routerLink]="['/blog']" class="hover:text-green-600">Blog</a></li>
+      <li><a [routerLink]="['/contacto']" class="hover:text-green-600">Contacto</a></li>
+    </ul>
+    <div class="flex items-center gap-4">
+      <div class="relative w-48">
+        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+          <i class="bi bi-search"></i>
+        </span>
+        <input type="text" placeholder="Buscar..."
+               class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500">
+      </div>
+      <a href="#" class="text-gray-600 hover:text-green-600 text-2xl">
+        <i class="bi bi-cart"></i>
+      </a>
+      <button id="abrirModalLogin" class="text-gray-600 hover:text-green-600 text-2xl">
+        <i class="bi bi-person-circle"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+
