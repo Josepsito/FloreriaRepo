@@ -1,12 +1,20 @@
 <app-header></app-header>
 <body class="bg-white text-gray-800">
 <!-- Hero de Novias -->
-<section class="bg-cover bg-center h-64 relative"
-         style="background-image: url('https://images.pexels.com/photos/32476126/pexels-photo-32476126.jpeg');">
+<section class="h-[500px] relative overflow-hidden">
+  <!-- Video de fondo -->
+  <video autoplay muted loop class="absolute inset-0 w-full h-full object-cover">
+    <source src="https://www.pexels.com/es-es/download/video/8775885/" type="video/mp4">
+    Tu navegador no soporta videos HTML5.
+  </video>
+
+  <!-- Capa negra con opacidad -->
   <div class="absolute inset-0 bg-black opacity-50"></div>
-  <div class="container mx-auto text-center text-white relative z-10 pt-24">
-    <h1 class="text-4xl font-bold">Novias</h1>
-    <p class="mt-2 text-lg">Encuentra el bouquet perfecto para tu boda</p>
+
+  <!-- Contenido encima del video -->
+  <div class="absolute inset-0 flex flex-col justify-center items-center text-center text-white">
+    <h1 class="text-6xl font-bold">Novias</h1>
+    <p class="mt-2 text-2x1">Encuentra el bouquet perfecto para tu boda</p>
   </div>
 </section>
 
@@ -23,7 +31,7 @@
           <h3 class="text-xl font-semibold mb-2">Bouquet Pequeño</h3>
           <p class="text-gray-600 mb-2">15 cm, hasta 3 tipos de flores y un boutonniere.</p>
           <p class="text-green-600 font-semibold mb-2">S/. 320</p>
-          <a href="https://la-botanika.com/pages/novias" target="_blank"
+          <a href="#" target="_blank"
              class="text-green-600 hover:text-green-800 font-semibold">Ver más</a>
         </div>
       </div>
@@ -35,7 +43,7 @@
           <h3 class="text-xl font-semibold mb-2">Bouquet Mediano</h3>
           <p class="text-gray-600 mb-2">18 cm, hasta 6 tipos de flores, boutonniere incluido.</p>
           <p class="text-green-600 font-semibold mb-2">S/. 370</p>
-          <a href="https://la-botanika.com/pages/novias" target="_blank"
+          <a href="#" target="_blank"
              class="text-green-600 hover:text-green-800 font-semibold">Ver más</a>
         </div>
       </div>
@@ -48,7 +56,7 @@
           <p class="text-gray-600 mb-2">Cascada de 40 cm, hasta 6 tipos de flores, boutonniere incluido.
           </p>
           <p class="text-green-600 font-semibold mb-2">S/. 680</p>
-          <a href="https://la-botanika.com/pages/novias" target="_blank"
+          <a href="#" target="_blank"
              class="text-green-600 hover:text-green-800 font-semibold">Ver más</a>
         </div>
       </div>
@@ -60,7 +68,7 @@
           <h3 class="text-xl font-semibold mb-2">Bouquet con Orquídeas</h3>
           <p class="text-gray-600 mb-2">Mediano, incluye hasta 12 flores de orquídeas y boutonniere.</p>
           <p class="text-green-600 font-semibold mb-2">S/. 520</p>
-          <a href="https://la-botanika.com/pages/novias" target="_blank"
+          <a href="#" target="_blank"
              class="text-green-600 hover:text-green-800 font-semibold">Ver más</a>
         </div>
       </div>
@@ -72,7 +80,7 @@
           <h3 class="text-xl font-semibold mb-2">Bouquet Mediano Tulipanes</h3>
           <p class="text-gray-600 mb-2">18-20 cm, incluye hasta 30 tulipanes y boutonniere.</p>
           <p class="text-green-600 font-semibold mb-2">S/. 450</p>
-          <a href="https://la-botanika.com/pages/novias" target="_blank"
+          <a href="#" target="_blank"
              class="text-green-600 hover:text-green-800 font-semibold">Ver más</a>
         </div>
       </div>
