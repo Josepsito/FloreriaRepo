@@ -1,14 +1,23 @@
 import { Component, signal } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from './service/auth';
+import { RouterOutlet } from '@angular/router';
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterModule, FormsModule],
+  imports: [FormsModule, HttpClientModule, RouterOutlet],
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 })
 export class App {
   protected readonly title = signal('Jardín Secreto');
+   usuario: string | null = null;
+   constructor(private authService: AuthService) {}
+
+    ngOnInit(): void {
+      this.usuario = this.authService.getUsuario();
+    }
 }
