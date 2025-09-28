@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AuthService } from '../../service/auth';
+import { UsuarioService } from '../../service/usuario';
 
 @Component({
   selector: 'app-header',
@@ -12,42 +12,76 @@ import { AuthService } from '../../service/auth';
   styleUrls: ['./header.css']
 })
 export class Header {
-  usuario: string | null = null;
-  username: string = '';
+  // Estado de modales
+  mostrarLogin = false;
+  mostrarRegistro = false;
+
+  // Campos de login
+  email: string = '';
   password: string = '';
-  mostrarLogin: boolean = false;
 
-  constructor(private authService: AuthService) {}
+  // Campos de registro
+  nombreReg: string = '';
+  emailReg: string = '';
+  passwordReg: string = '';
+  telefonoReg: string = '';    // opcional
+  direccionReg: string = '';   // opcional
 
-  ngOnInit(): void {
-    this.usuario = this.authService.getUsuario();
-  }
+  constructor(private usuarioService: UsuarioService) {}
 
-  abrirLogin(): void {
+  // Abrir modales
+  abrirLogin() {
     this.mostrarLogin = true;
+    this.mostrarRegistro = false;
   }
 
-  cerrarLogin(): void {
+  abrirRegistro() {
+    this.mostrarRegistro = true;
     this.mostrarLogin = false;
   }
 
-  iniciarSesion(): void {
-    if (!this.username || !this.password) return;
-
-    this.authService.login({ usuario: this.username, password: this.password })
-      .subscribe({
-        next: (res) => {
-          this.authService.setUsuario(this.username);
-          this.usuario = this.username;
-          this.cerrarLogin();
-          console.log('Login exitoso', res);
-        },
-        error: (err) => console.error('Error en login', err)
-      });
+  // Cerrar modales
+  cerrarModales() {
+    this.mostrarLogin = false;
+    this.mostrarRegistro = false;
   }
 
-  logout(): void {
-    this.authService.logout();
-    this.usuario = null;
+  // LOGIN
+  onLogin() {
+    this.usuarioService.login({
+      email: this.email,
+      password: this.password
+    }).subscribe(
+      res => {
+        alert('Inicio de sesión exitoso');
+        this.usuarioService.setUsuario(res.nombre || res.email);
+        this.cerrarModales();
+      },
+      err => {
+        alert('Error en login');
+        console.error(err);
+      }
+    );
+  }
+
+  // REGISTRO
+  onRegister() {
+    this.usuarioService.registrar({
+      nombre: this.nombreReg,
+      email: this.emailReg,
+      password: this.passwordReg,
+      telefono: this.telefonoReg,
+      direccion: this.direccionReg
+    }).subscribe(
+      res => {
+        alert('Registro exitoso');
+        this.usuarioService.setUsuario(res.nombre || res.email);
+        this.cerrarModales();
+      },
+      err => {
+        alert('Error en registro');
+        console.error(err);
+      }
+    );
   }
 }

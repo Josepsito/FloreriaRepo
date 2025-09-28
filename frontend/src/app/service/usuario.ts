@@ -1,20 +1,48 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({
+  providedIn: 'root'
+})
 export class UsuarioService {
-  private usuario: string | null = null;
+  private apiUrl = 'http://localhost:8080'; // Ajusta si tu backend usa otra ruta
 
+  constructor(private http: HttpClient) {}
+
+  // LOGIN
+  login(credenciales: { email: string; password: string }): Observable<any> {
+    return this.http.post(`${this.apiUrl}/auth/login`, credenciales);
+  }
+
+  // REGISTRO
+  registrar(usuario: {
+    nombre: string;
+    email: string;
+    password: string;
+    telefono?: string;
+    direccion?: string;
+  }): Observable<any> {
+    return this.http.post(`${this.apiUrl}/auth/register`, usuario);
+  }
+
+  // Guardar usuario en localStorage
   setUsuario(nombre: string) {
-    this.usuario = nombre;
     localStorage.setItem('usuario', nombre);
   }
 
+  // Obtener usuario logueado
   getUsuario(): string | null {
-    return this.usuario || localStorage.getItem('usuario');
+    return localStorage.getItem('usuario');
   }
 
-  cerrarSesion() {
-    this.usuario = null;
+  // Cerrar sesión
+  logout() {
     localStorage.removeItem('usuario');
+  }
+
+  // Verificar si hay sesión activa
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('usuario');
   }
 }

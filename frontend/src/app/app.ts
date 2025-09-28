@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { AuthService } from './service/auth';
+import { UsuarioService } from './service/usuario';
 import { RouterOutlet } from '@angular/router';
 
 
@@ -15,9 +15,9 @@ import { RouterOutlet } from '@angular/router';
 export class App {
   protected readonly title = signal('Jardín Secreto');
    usuario: string | null = null;
-   constructor(private authService: AuthService) {}
+   constructor(private usuarioService: UsuarioService) {}
 
     ngOnInit(): void {
-      this.usuario = this.authService.getUsuario();
+      this.usuario = this.usuarioService.getUsuario();
     }
 }
