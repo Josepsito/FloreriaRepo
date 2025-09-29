@@ -1,6 +1,5 @@
 <app-header></app-header>
-<body class="bg-white text-gray-800">
-<!-- Hero del catálogo -->
+
 <section class="relative w-full h-[300px] bg-cover bg-center"
          style="background-image: url('https://i.postimg.cc/j2BTQksj/banner-Flor-Rosa.png');">
   <div class="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-white text-center">
@@ -9,151 +8,28 @@
   </div>
 </section>
 
-<!-- Navbar -->
-<div class="bg-black/70 text-white backdrop-blur-sm shadow-md">
-  <div class="container mx-auto flex items-center justify-center py-2 gap-3 text-sm font-medium">
-    <i class="bi bi-truck text-lg"></i>
-    <span>Delivery a todo Lima</span>
-  </div>
-</div>
-
-<!-- Grid del catálogo-->
 <main class="container mx-auto py-12 px-4">
   <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
-
-    <!-- AMISTAD -->
-    <div class="relative group overflow-hidden rounded-xl shadow hover:shadow-lg transition duration-300">
-      <a [routerLink]="['/coleccion', 'amistad']" class="block">
-      <img src="https://i.postimg.cc/nc8Sttwp/florcate2.png" alt="AMISTAD"
+    <div *ngFor="let cat of categorias"
+         class="relative group overflow-hidden rounded-xl shadow hover:shadow-lg transition duration-300">
+      <a [routerLink]="['/coleccion', cat.nombre]" class="block">
+        <img [src]="defaultImg" [alt]="cat.nombre"
              class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300">
         <span
           class="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-white text-black px-2 py-1 text-sm font-semibold">
-            AMISTAD
-          </span>
-      </a>
-    </div>
-
-    <!-- AMOR -->
-    <div class="relative group overflow-hidden rounded-xl shadow hover:shadow-lg transition duration-300">
-      <a [routerLink]="['/coleccion', 'amor']" class="block">
-        <img src="https://i.postimg.cc/nc8Sttwp/florcate2.png" alt="AMOR"
-             class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300">
-        <span
-          class="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-white text-black px-2 py-1 text-sm font-semibold">
-            AMOR
-          </span>
-      </a>
-    </div>
-
-    <!-- ARREGLOS -->
-    <div class="relative group overflow-hidden rounded-xl shadow hover:shadow-lg transition duration-300">
-      <a [routerLink]="['/coleccion', 'arreglos']" class="block">
-        <img src="https://i.postimg.cc/nc8Sttwp/florcate2.png" alt="ARREGLOS"
-             class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300">
-        <span
-          class="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-white text-black px-2 py-1 text-sm font-semibold">
-            ARREGLOS
-          </span>
-      </a>
-    </div>
-
-    <!-- BABY SHOWER -->
-    <div class="relative group overflow-hidden rounded-xl shadow hover:shadow-lg transition duration-300">
-      <a href="/collections/baby-shower" class="block">
-        <img src="https://i.postimg.cc/nc8Sttwp/florcate2.png" alt="BABY SHOWER"
-             class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300">
-        <span
-          class="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-white text-black px-2 py-1 text-sm font-semibold">
-            BABY SHOWER
-          </span>
-      </a>
-    </div>
-
-    <!-- BODAS -->
-    <div class="relative group overflow-hidden rounded-xl shadow hover:shadow-lg transition duration-300">
-      <a href="/collections/bodas" class="block">
-        <img src="https://i.postimg.cc/nc8Sttwp/florcate2.png" alt="BODAS"
-             class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300">
-        <span
-          class="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-white text-black px-2 py-1 text-sm font-semibold">
-            BODAS
-          </span>
-      </a>
-    </div>
-
-    <!--   -->
-    <div class="relative group overflow-hidden rounded-xl shadow hover:shadow-lg transition duration-300">
-      <a href="/collections/amistad" class="block">
-        <img src="https://i.postimg.cc/nc8Sttwp/florcate2.png" alt="AMISTAD"
-             class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300">
-        <span
-          class="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-white text-black px-2 py-1 text-sm font-semibold">
-            AMISTAD
-          </span>
-      </a>
-    </div>
-
-    <!--   -->
-    <div class="relative group overflow-hidden rounded-xl shadow hover:shadow-lg transition duration-300">
-      <a href="/collections/amor" class="block">
-        <img src="https://i.postimg.cc/nc8Sttwp/florcate2.png" alt="AMOR"
-             class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300">
-        <span
-          class="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-white text-black px-2 py-1 text-sm font-semibold">
-            AMOR
-          </span>
-      </a>
-    </div>
-
-    <!--   -->
-    <div class="relative group overflow-hidden rounded-xl shadow hover:shadow-lg transition duration-300">
-      <a href="/collections/arreglos" class="block">
-        <img src="https://i.postimg.cc/nc8Sttwp/florcate2.png" alt="ARREGLOS"
-             class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300">
-        <span
-          class="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-white text-black px-2 py-1 text-sm font-semibold">
-            ARREGLOS
-          </span>
-      </a>
-    </div>
-
-    <!--    -->
-    <div class="relative group overflow-hidden rounded-xl shadow hover:shadow-lg transition duration-300">
-      <a href="/collections/baby-shower" class="block">
-        <img src="https://i.postimg.cc/nc8Sttwp/florcate2.png" alt="BABY SHOWER"
-             class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300">
-        <span
-          class="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-white text-black px-2 py-1 text-sm font-semibold">
-            BABY SHOWER
-          </span>
-      </a>
-    </div>
-
-    <!--   -->
-    <div class="relative group overflow-hidden rounded-xl shadow hover:shadow-lg transition duration-300">
-      <a href="/collections/bodas" class="block">
-        <img src="https://i.postimg.cc/nc8Sttwp/florcate2.png" alt="BODAS"
-             class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300">
-        <span
-          class="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-white text-black px-2 py-1 text-sm font-semibold">
-            BODAS
-          </span>
+          {{ cat.nombre.toUpperCase() }}
+        </span>
       </a>
     </div>
   </div>
 
-  <!-- Contenedor de paginación -->
   <div class="flex justify-center mt-8 space-x-2">
     <a href="#" class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-200 transition">Anterior</a>
-
-    <!-- Páginas -->
     <a href="#" class="px-3 py-1 border border-gray-300 rounded bg-gray-200 font-semibold">1</a>
     <a href="#" class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-200 transition">2</a>
     <a href="#" class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-200 transition">3</a>
-
     <a href="#" class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-200 transition">Siguiente</a>
   </div>
-
 </main>
-</body>
+
 <app-footer></app-footer>

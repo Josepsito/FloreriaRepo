@@ -8,28 +8,38 @@ import com.avance.floreria.service.CategoriaService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CategoriaServiceImpl implements CategoriaService {
 
     private final CategoriaRepository categoriaRepository;
-    private final CategoriaMapper categoriaMapper;
 
-    public CategoriaServiceImpl(CategoriaRepository categoriaRepository, CategoriaMapper categoriaMapper) {
+    public CategoriaServiceImpl(CategoriaRepository categoriaRepository) {
         this.categoriaRepository = categoriaRepository;
-        this.categoriaMapper = categoriaMapper;
     }
 
     @Override
-    public CategoriaResponseDTO findById(int id) {
-        Categoria categoria = categoriaRepository.findById(id).orElseThrow(()->new RuntimeException("Categoria no encontrada"));
-        return categoriaMapper.ToDTO(categoria);
+    public CategoriaResponseDTO crearCategoria(String nombre, String descripcion, String imagenURL) {
+        Categoria categoria = new Categoria();
+        categoria.setNombre(nombre);
+        categoria.setDescripcion(descripcion);
+        categoria.setImagenURL(imagenURL);
+
+        Categoria nueva = categoriaRepository.save(categoria);
+        return CategoriaMapper.toDTO(nueva);
+    }
+
+
+    @Override
+    public CategoriaResponseDTO findById(Long id) {
+        return CategoriaMapper.toDTO(categoriaRepository.findById(id).orElseThrow());
     }
 
     @Override
     public List<CategoriaResponseDTO> findAll() {
-        List<Categoria> categorias = categoriaRepository.findAll();
-        return categoriaMapper.ToDTOList(categorias);
+        return categoriaRepository.findAll().stream()
+                .map(CategoriaMapper::toDTO)
+                .collect(Collectors.toList());
     }
-
 }

@@ -1,10 +1,11 @@
 package com.avance.floreria.entity;
+
 import jakarta.persistence.*;
+
 import java.util.List;
 
 @Entity
 @Table(name = "Categorias")
-
 public class Categoria {
 
     @Id
@@ -15,12 +16,20 @@ public class Categoria {
     @Column(name = "nombre", nullable = false, length = 50)
     private String nombre;
 
+    @Column(name = "descripcion", length = 255)
+    private String descripcion;
+
+    @Column(name = "imagenURL", length = 255)
+    private String imagenURL;
+
     @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Producto> productos;
 
-    public Categoria(Long id, String nombre, List<Producto> productos) {
+    public Categoria(Long id, String nombre, String descripcion, String imagenURL, List<Producto> productos) {
         this.id = id;
         this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.imagenURL = imagenURL;
         this.productos = productos;
     }
 
@@ -41,6 +50,22 @@ public class Categoria {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getImagenURL() {
+        return imagenURL;
+    }
+
+    public void setImagenURL(String imagenURL) {
+        this.imagenURL = imagenURL;
     }
 
     public List<Producto> getProductos() {

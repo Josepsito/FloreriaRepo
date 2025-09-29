@@ -10,7 +10,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/productos")
-
 public class ProductoController {
 
     private final ProductoService productoService;
@@ -39,4 +38,12 @@ public class ProductoController {
         productoService.eliminarProductoPorID(id);
         return ResponseEntity.noContent().build();
     }
+
+    // NUEVO ENDPOINT: productos por categoría
+    @GetMapping("/categoria/{nombre}")
+    public ResponseEntity<List<ProductoResponseDTO>> obtenerPorCategoria(@PathVariable String nombre) {
+        List<ProductoResponseDTO> productos = productoService.obtenerPorCategoria(nombre);
+        return ResponseEntity.ok(productos);
+    }
+
 }

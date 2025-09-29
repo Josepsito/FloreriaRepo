@@ -8,5 +8,4 @@ public record ProductoRequestDTO (
         String imagenURL,
         Long categoriaID
 ){
-
 }

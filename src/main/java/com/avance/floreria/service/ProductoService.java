@@ -6,6 +6,7 @@ import com.avance.floreria.dto.response.ProductoResponseDTO;
 import java.util.List;
 
 public interface ProductoService {
+
     List<ProductoResponseDTO> obtenerTodosLosProductos();
 
     ProductoResponseDTO obtenerPorID(Long id);
@@ -13,4 +14,6 @@ public interface ProductoService {
     void eliminarProductoPorID(Long id);
 
     ProductoResponseDTO nuevoProducto(ProductoRequestDTO productoDTO);
+
+    List<ProductoResponseDTO> obtenerPorCategoria(String nombreCategoria);
 }
