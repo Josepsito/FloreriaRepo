@@ -33,13 +33,9 @@ public class CategoriaController {
     }
 
     @PostMapping
-    public ResponseEntity<CategoriaResponseDTO> crearCategoria(@RequestBody CategoriaRequestDTO dto) {
-        CategoriaResponseDTO nueva = categoriaService.crearCategoria(
-                dto.getNombre(),
-                dto.getDescripcion(),
-                dto.getImagenURL()
-        );
-        return ResponseEntity.ok(nueva);
+    public ResponseEntity<CategoriaResponseDTO> crearCategoria(@RequestBody CategoriaRequestDTO categoriaRequestDTO) {
+        CategoriaResponseDTO categoriaResponseDTO=categoriaService.crearCategoria(categoriaRequestDTO);
+        return ResponseEntity.ok(categoriaResponseDTO);
     }
 
     @GetMapping("/categoria/{nombre}")

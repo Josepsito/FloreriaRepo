@@ -7,6 +7,7 @@ export interface Categoria {
   nombre: string;
   descripcion: string;
   imagenURL: string;
+  imagenSecundariaURL: string;
 }
 
 @Injectable({

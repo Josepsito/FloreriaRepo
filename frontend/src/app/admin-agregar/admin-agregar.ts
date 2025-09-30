@@ -25,10 +25,11 @@ export class AdminAgregar {
     categoria: undefined
   };
 
-  nuevaCategoria: { nombre: string; descripcion: string; imagenURL: string } = {
+  nuevaCategoria: { nombre: string; descripcion: string; imagenURL: string , imagenSecundariaURL: string } = {
     nombre: '',
     descripcion: '',
-    imagenURL: ''
+    imagenURL: '',
+    imagenSecundariaURL: ''
   };
 
   defaultImg: string = 'https://via.placeholder.com/150';
@@ -50,7 +51,7 @@ export class AdminAgregar {
 
   // Agregar nueva categoría
   agregarCategoria() {
-    const { nombre, descripcion, imagenURL } = this.nuevaCategoria;
+    const { nombre, descripcion, imagenURL ,imagenSecundariaURL} = this.nuevaCategoria;
 
     if (!nombre.trim() || !descripcion.trim() || !imagenURL.trim()) {
       Swal.fire({
@@ -71,13 +72,13 @@ export class AdminAgregar {
       return;
     }
 
-    const nuevaCat: Categoria = { id: 0, nombre, descripcion, imagenURL };
+    const nuevaCat: Categoria = { id: 0, nombre, descripcion, imagenURL ,imagenSecundariaURL};
 
     this.categoriaService.crearCategoria(nuevaCat).subscribe({
       next: (res: Categoria) => {
         this.categorias.push(res);
         this.producto.categoria = res;
-        this.nuevaCategoria = { nombre: '', descripcion: '', imagenURL: '' };
+        this.nuevaCategoria = { nombre: '', descripcion: '', imagenURL: '' ,imagenSecundariaURL: ''};
 
         Swal.fire({
           icon: 'success',

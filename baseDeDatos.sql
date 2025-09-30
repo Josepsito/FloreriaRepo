@@ -12,7 +12,10 @@ CREATE TABLE Usuarios (
 
 CREATE TABLE Categorias (
     categoriaid INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(50) NOT NULL
+    nombre VARCHAR(50) NOT NULL,
+    descripcion VARCHAR(255),
+    imagenURL VARCHAR(500),
+    imagen_secundariaURL VARCHAR(500)
 );
 
 CREATE TABLE Productos (

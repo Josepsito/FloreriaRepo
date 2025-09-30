@@ -22,18 +22,23 @@ public class Categoria {
     @Column(name = "imagenURL", length = 255)
     private String imagenURL;
 
+    @Column(name = "imagen_secundariaURL", length = 500)
+    private String imagenSecundariaURL;
+
     @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Producto> productos;
 
-    public Categoria(Long id, String nombre, String descripcion, String imagenURL, List<Producto> productos) {
+    public Categoria(Long id, String nombre, String descripcion, String imagenURL, String imagenSecundariaURL, List<Producto> productos) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.imagenURL = imagenURL;
+        this.imagenSecundariaURL = imagenSecundariaURL;
         this.productos = productos;
     }
 
     public Categoria() {
+
     }
 
     public Long getId() {
@@ -66,6 +71,14 @@ public class Categoria {
 
     public void setImagenURL(String imagenURL) {
         this.imagenURL = imagenURL;
+    }
+
+    public String getImagenSecundariaURL() {
+        return imagenSecundariaURL;
+    }
+
+    public void setImagenSecundariaURL(String imagenSecundariaURL) {
+        this.imagenSecundariaURL = imagenSecundariaURL;
     }
 
     public List<Producto> getProductos() {
