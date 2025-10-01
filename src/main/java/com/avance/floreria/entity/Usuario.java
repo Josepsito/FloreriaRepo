@@ -36,7 +36,21 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Pedido> pedidos;
 
-    public Usuario(Long id, String nombre, String email, String passwordHash, String telefono, String direccion, List<Carrito> carritos, List<Pedido> pedidos) {
+    @Column(name = "activo",nullable = false)
+    private boolean activo;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "rol", nullable = false, length = 50)
+    private Rol rol;
+
+    public enum Rol {
+        ADMIN,
+        USUARIO,
+    }
+
+    public Usuario() {}
+
+    public Usuario(Long id, String nombre, String email, String passwordHash, String telefono, String direccion, List<Carrito> carritos, List<Pedido> pedidos, boolean activo, Rol rol) {
         this.id = id;
         this.nombre = nombre;
         this.email = email;
@@ -45,9 +59,8 @@ public class Usuario {
         this.direccion = direccion;
         this.carritos = carritos;
         this.pedidos = pedidos;
-    }
-
-    public Usuario() {
+        this.activo = activo;
+        this.rol = rol;
     }
 
     public Long getId() {
@@ -112,5 +125,21 @@ public class Usuario {
 
     public void setPedidos(List<Pedido> pedidos) {
         this.pedidos = pedidos;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
     }
 }

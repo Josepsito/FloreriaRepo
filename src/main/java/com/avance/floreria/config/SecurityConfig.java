@@ -2,30 +2,57 @@ package com.avance.floreria.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-@Configuration
-public class SecurityConfig {
+    @Configuration
+    @EnableWebSecurity
+    public class SecurityConfig {
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-                .csrf(csrf -> csrf.disable()) // 🔹 deshabilita CSRF
-                .authorizeHttpRequests(auth -> auth
-                        .anyRequest().permitAll() // 🔹 permite todas las requests
-                )
-                .formLogin(login -> login.disable()) // 🔹 deshabilita login por formulario
-                .httpBasic(basic -> basic.disable()); // 🔹 deshabilita basic auth
+        private final UserDetailsService userDetailsService;
 
-        return http.build();
+        public SecurityConfig(UserDetailsService userDetailsService) {
+            this.userDetailsService = userDetailsService;
+        }
+
+        @Bean
+        public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+            return http
+                    .cors(Customizer.withDefaults())
+                    .csrf(csrf -> csrf.disable())
+                    .authorizeHttpRequests(auth -> auth
+                            // Endpoints públicos
+                            .requestMatchers("/api/auth/login/**",
+                                    "/api/auth/register/**",
+                                    "/api/auth/me").permitAll()
+
+                            .requestMatchers(HttpMethod.GET, "/**").permitAll()
+
+                            .anyRequest().permitAll()
+                    )
+                    .formLogin(form -> form.disable())
+                    .logout(logout -> logout.disable())
+                    .httpBasic(basic -> basic.disable())
+                    .sessionManagement(session -> session.maximumSessions(1))
+                    .build();
+        }
+
+        @Bean
+        public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
+            return authConfig.getAuthenticationManager();
+        }
+
+        @Bean
+        public PasswordEncoder passwordEncoder() {
+            return new BCryptPasswordEncoder();
+        }
+
     }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-}

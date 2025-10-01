@@ -4,6 +4,7 @@ public record UsuarioResponseDTO(
         String nombre,
         String email,
         String telefono,
-        String direccion
+        String direccion,
+        String rol
 ) {
 }

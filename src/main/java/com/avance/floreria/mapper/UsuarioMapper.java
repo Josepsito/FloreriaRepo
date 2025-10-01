@@ -24,7 +24,8 @@ public class UsuarioMapper {
                 usuario.getNombre(),
                 usuario.getEmail(),
                 usuario.getTelefono(),
-                usuario.getDireccion()
+                usuario.getDireccion(),
+                usuario.getRol().name()
         );
     }
 
@@ -41,6 +42,7 @@ public class UsuarioMapper {
         usuario.setTelefono(usuarioDTO.telefono());
         usuario.setPasswordHash(passwordEncoder.encode(usuarioDTO.password()));
         usuario.setPedidos(new ArrayList<>());
+        usuario.setRol(Usuario.Rol.USUARIO);
         return usuario;
     }
 

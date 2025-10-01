@@ -7,7 +7,9 @@ CREATE TABLE Usuarios (
     email VARCHAR(100) UNIQUE NOT NULL,
     password_hash VARCHAR(200) NOT NULL,
     telefono VARCHAR(20),
-    direccion VARCHAR(200)
+    direccion VARCHAR(200),
+    activo BOOLEAN DEFAULT TRUE,
+    rol ENUM('ADMIN', 'USUARIO') NOT NULL DEFAULT 'USUARIO'
 );
 
 CREATE TABLE Categorias (
@@ -55,4 +57,18 @@ CREATE TABLE DetallePedido (
     precio_unitario DECIMAL(10,2) NOT NULL,
     FOREIGN KEY (pedidoid) REFERENCES Pedidos(pedidoid),
     FOREIGN KEY (productoid) REFERENCES Productos(productoid)
+);
+
+CREATE TABLE Envios (
+    envioid INT AUTO_INCREMENT PRIMARY KEY,
+    pedidoid INT NOT NULL,
+    direccion_envio VARCHAR(200) NOT NULL,
+    ciudad VARCHAR(100),
+    codigo_postal VARCHAR(20),
+    pais VARCHAR(50),
+    empresa_envio VARCHAR(100),
+    fecha_envio DATETIME,
+    fecha_entrega_estimada DATETIME,
+    estado VARCHAR(50) DEFAULT 'Pendiente',
+    FOREIGN KEY (pedidoid) REFERENCES Pedidos(pedidoid)
 );
