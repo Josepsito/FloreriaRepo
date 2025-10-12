@@ -1,6 +1,7 @@
 package com.avance.floreria.controller;
 
 import com.avance.floreria.dto.request.EmailContraseñaRequestDTO;
+import com.avance.floreria.dto.request.UsuarioRequestDTO;
 import com.avance.floreria.dto.response.UsuarioResponseDTO;
 import com.avance.floreria.service.AuthService;
 import com.avance.floreria.service.impl.AuthServiceImpl;
@@ -45,6 +46,12 @@ public class AuthController {
         session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY,
                 SecurityContextHolder.getContext());
 
+        return ResponseEntity.ok(usuario);
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<UsuarioResponseDTO> register(@RequestBody UsuarioRequestDTO registroRequest) {
+        UsuarioResponseDTO usuario = authService.register(registroRequest);
         return ResponseEntity.ok(usuario);
     }
 
