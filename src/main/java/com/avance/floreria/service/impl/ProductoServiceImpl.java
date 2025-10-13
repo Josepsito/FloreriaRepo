@@ -52,7 +52,7 @@ public class ProductoServiceImpl implements ProductoService {
         Producto producto = new Producto();
         producto.setNombre(dto.nombre());
         producto.setDescripcion(dto.descripcion());
-        producto.setPrecio(BigDecimal.valueOf(dto.precio())); // Convertir a BigDecimal
+        producto.setPrecio(BigDecimal.valueOf(dto.precio()));
         producto.setStock(dto.stock());
         producto.setImagenURL(dto.imagenURL());
         producto.setCategoria(categoria);

@@ -33,10 +33,8 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        // Rutas de autenticación públicas
                         .requestMatchers("/api/auth/login", "/api/auth/register", "/api/auth/me", "/api/auth/logout").permitAll()
                         .requestMatchers("/api/auth/me").authenticated()
-                        // GET públicos
                         .requestMatchers(HttpMethod.GET, "/api/categorias/**", "/api/productos/**").permitAll()
                         .requestMatchers("/api/admin-agregar/**").hasRole("ADMIN")
                         .anyRequest().permitAll()
