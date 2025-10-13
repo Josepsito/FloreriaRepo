@@ -1,9 +1,8 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UsuarioService } from './service/usuario';
-import { RouterOutlet } from '@angular/router';
-
+import { Router, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -13,11 +12,28 @@ import { RouterOutlet } from '@angular/router';
   styleUrls: ['./app.css']
 })
 export class App {
-  protected readonly title = signal('Jardín Secreto');
-   usuario: string | null = null;
-   constructor(private usuarioService: UsuarioService) {}
+  usuario: any = null;
 
-    ngOnInit(): void {
-      this.usuario = this.usuarioService.getUsuario();
-    }
+  constructor(private usuarioService: UsuarioService, private router: Router) {}
+
+  ngOnInit(): void {
+    this.usuarioService.getMe().subscribe({
+      next: (u) => {
+        this.usuario = u;
+        if (this.usuario?.rol === 'ADMIN') {
+          this.router.navigate(['/admin-agregar']);
+        }
+      },
+      error: () => {
+        this.usuario = null;
+      }
+    });
+  }
+
+  cerrarSesion() {
+    this.usuarioService.logout().subscribe(() => {
+      this.usuario = null;
+      this.router.navigate(['/']);
+    });
+  }
 }

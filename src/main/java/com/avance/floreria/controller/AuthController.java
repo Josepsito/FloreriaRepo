@@ -6,6 +6,7 @@ import com.avance.floreria.dto.response.UsuarioResponseDTO;
 import com.avance.floreria.service.AuthService;
 import com.avance.floreria.service.impl.AuthServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +36,7 @@ public class AuthController {
         UsuarioResponseDTO usuario = authService.login(loginRequest);
 
         User userDetails = new User(usuario.email(), "",
-                List.of(() -> "ROLE_" + usuario.rol()));
+                List.of(usuario::rol));
 
         Authentication authentication =
                 new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
@@ -66,9 +67,8 @@ public class AuthController {
     }
 
     @PostMapping("/logout")
-    public ResponseEntity<String> logout(HttpSession session) {
-        session.invalidate();
-        SecurityContextHolder.clearContext();
-        return ResponseEntity.ok("Sesión cerrada correctamente");
+    public ResponseEntity<Void> logout(HttpServletRequest request, HttpServletResponse response) {
+        request.getSession().invalidate();
+        return ResponseEntity.ok().build();
     }
 }

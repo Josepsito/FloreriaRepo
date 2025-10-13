@@ -4,7 +4,6 @@ public record UsuarioRequestDTO (
         String nombre,
         String password,
         String email,
-        String telefono,
-        String direccion
+        String telefono
 ){
 }

@@ -37,7 +37,7 @@ public class AuthServiceImpl implements AuthService {
         Usuario usuario = usuarioRepository.findByEmail(dto.email())
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
-        if (!passwordEncoder.matches(dto.contraseña(), usuario.getPasswordHash())) {
+        if (!passwordEncoder.matches(dto.password(), usuario.getPasswordHash())) {
             throw new RuntimeException("Contraseña incorrecta");
         }
         Authentication auth = new UsernamePasswordAuthenticationToken(
@@ -74,8 +74,7 @@ public class AuthServiceImpl implements AuthService {
         usuario.setEmail(dto.email());
         usuario.setPasswordHash(passwordEncoder.encode(dto.password()));
         usuario.setTelefono(dto.telefono());
-        usuario.setDireccion(dto.direccion());
-        usuario.setRol(Usuario.Rol.USUARIO); // rol por defecto
+        usuario.setRol(Usuario.Rol.USUARIO);
 
         usuarioRepository.save(usuario);
 

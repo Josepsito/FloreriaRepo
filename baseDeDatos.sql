@@ -6,8 +6,7 @@ CREATE TABLE Usuarios (
     nombre VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     password_hash VARCHAR(200) NOT NULL,
-    telefono VARCHAR(20),
-    direccion VARCHAR(200),
+    telefono VARCHAR(20) NOT NULL,
     activo BOOLEAN DEFAULT TRUE,
     rol ENUM('ADMIN', 'USUARIO') NOT NULL DEFAULT 'USUARIO'
 );
@@ -15,9 +14,9 @@ CREATE TABLE Usuarios (
 CREATE TABLE Categorias (
     categoriaid INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
-    descripcion VARCHAR(255),
-    imagenURL VARCHAR(500),
-    imagen_secundariaURL VARCHAR(500)
+    descripcion VARCHAR(255) NOT NULL,
+    imagenURL VARCHAR(500) NOT NULL,
+    imagen_secundariaURL VARCHAR(500) NOT NULL
 );
 
 CREATE TABLE Productos (

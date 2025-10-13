@@ -2,8 +2,11 @@
   <nav class="container mx-auto flex items-center justify-between py-4 px-6">
     <!-- Logo -->
     <div class="flex items-center gap-2 text-2xl font-bold">
-      <span class="material-symbols-outlined text-green-600">potted_plant</span>
-      Jardín secreto
+      <a [routerLink]="['/']"
+         class="flex items-center gap-2 hover:text-green-600 transition-colors duration-200">
+        <span class="material-symbols-outlined text-green-600">potted_plant</span>
+        Jardín secreto
+      </a>
     </div>
 
     <!-- Links -->
@@ -12,7 +15,6 @@
       <li><a [routerLink]="['/catalogo']" class="hover:text-green-600">Catálogo</a></li>
       <li><a [routerLink]="['/eventos']" class="hover:text-green-600">Eventos</a></li>
       <li><a [routerLink]="['/novias']" class="hover:text-green-600">Novias</a></li>
-      <li><a [routerLink]="['/personaliza']" class="hover:text-green-600">Personaliza</a></li>
       <li><a [routerLink]="['/blog']" class="hover:text-green-600">Blog</a></li>
       <li><a [routerLink]="['/contacto']" class="hover:text-green-600">Contacto</a></li>
     </ul>
@@ -35,10 +37,18 @@
         <i class="bi bi-cart"></i>
       </a>
 
-      <!-- Usuario -->
-      <button (click)="abrirLogin()" class="text-gray-600 hover:text-green-600 text-2xl">
-        <i class="bi bi-person-circle"></i>
-      </button>
+      <!-- Usuario / Sesión -->
+      <div class="flex items-center gap-2">
+        <span *ngIf="usuario">{{ usuario.nombre }}</span>
+
+        <button *ngIf="usuario" (click)="logout()" class="text-gray-600 hover:text-green-600 text-2xl">
+          <i class="bi bi-box-arrow-right"></i>
+        </button>
+
+        <button *ngIf="!usuario" (click)="abrirLogin()" class="text-gray-600 hover:text-green-600 text-2xl">
+          <i class="bi bi-person-circle"></i>
+        </button>
+      </div>
     </div>
   </nav>
 </header>
@@ -66,6 +76,10 @@
               class="w-full bg-green-600 text-white py-2 rounded-lg font-semibold hover:bg-green-700 transition-colors">
         Entrar
       </button>
+      <!-- Mensaje de error -->
+      <p *ngIf="errorLogin" class="mt-2 text-red-600 text-sm text-center">
+        {{ errorLogin }}
+      </p>
     </form>
     <p class="mt-4 text-center text-gray-600">
       ¿Aún no tienes una cuenta?
@@ -103,15 +117,14 @@
         <input type="text" [(ngModel)]="telefonoReg" name="telefonoReg"
                class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-green-500">
       </div>
-      <div>
-        <label class="block mb-1 font-semibold">Dirección</label>
-        <input type="text" [(ngModel)]="direccionReg" name="direccionReg"
-               class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-green-500">
-      </div>
       <button type="submit"
               class="w-full bg-green-600 text-white py-2 rounded-lg font-semibold hover:bg-green-700 transition-colors">
         Registrarse
       </button>
+      <!-- Mensaje de error -->
+      <p *ngIf="errorRegistro" class="mt-2 text-red-600 text-sm text-center">
+        {{ errorRegistro }}
+      </p>
     </form>
     <p class="mt-4 text-center text-gray-600">
       ¿Tienes una cuenta?

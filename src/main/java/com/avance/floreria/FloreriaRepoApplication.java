@@ -15,7 +15,6 @@ public class FloreriaRepoApplication {
         SpringApplication.run(FloreriaRepoApplication.class, args);
     }
 
-
     @Bean
     public CommandLineRunner initAdmin(UsuarioRepository usuarioRepository, PasswordEncoder passwordEncoder) {
         return crearAdmin -> {
@@ -27,11 +26,9 @@ public class FloreriaRepoApplication {
                 admin.setEmail(adminEmail);
                 admin.setPasswordHash(passwordEncoder.encode("admin123"));
                 admin.setRol(Usuario.Rol.ADMIN);
-
+                admin.setTelefono("0000000000");
                 usuarioRepository.save(admin);
-                System.out.println("✅ Usuario ADMIN creado: " + adminEmail + " / admin123");
-            } else {
-                System.out.println("ℹ️ Usuario ADMIN ya existe.");
+                System.out.println("Usuario ADMIN creado: " + adminEmail + " / admin123");
             }
         };
     }

@@ -24,7 +24,6 @@ public class UsuarioMapper {
                 usuario.getNombre(),
                 usuario.getEmail(),
                 usuario.getTelefono(),
-                usuario.getDireccion(),
                 usuario.getRol().name()
         );
     }
@@ -36,7 +35,6 @@ public class UsuarioMapper {
     public Usuario toEntity (UsuarioRequestDTO usuarioDTO) {
         Usuario usuario = new Usuario();
         usuario.setCarritos(new ArrayList<>());
-        usuario.setDireccion(usuarioDTO.direccion());
         usuario.setNombre(usuarioDTO.nombre());
         usuario.setEmail(usuarioDTO.email());
         usuario.setTelefono(usuarioDTO.telefono());

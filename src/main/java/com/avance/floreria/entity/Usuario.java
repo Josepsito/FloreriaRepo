@@ -27,9 +27,6 @@ public class Usuario {
     @Column(name = "telefono", length = 20)
     private String telefono;
 
-    @Column(name = "direccion", length = 200)
-    private String direccion;
-
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Carrito> carritos;
 
@@ -50,13 +47,12 @@ public class Usuario {
 
     public Usuario() {}
 
-    public Usuario(Long id, String nombre, String email, String passwordHash, String telefono, String direccion, List<Carrito> carritos, List<Pedido> pedidos, boolean activo, Rol rol) {
+    public Usuario(Long id, String nombre, String email, String passwordHash, String telefono, List<Carrito> carritos, List<Pedido> pedidos, boolean activo, Rol rol) {
         this.id = id;
         this.nombre = nombre;
         this.email = email;
         this.passwordHash = passwordHash;
         this.telefono = telefono;
-        this.direccion = direccion;
         this.carritos = carritos;
         this.pedidos = pedidos;
         this.activo = activo;
@@ -101,14 +97,6 @@ public class Usuario {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
     }
 
     public List<Carrito> getCarritos() {
