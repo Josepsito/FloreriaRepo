@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/carritos")
+@RequestMapping("/api/carritos/")
 
 public class CarritoController {
 
@@ -16,6 +16,21 @@ public class CarritoController {
 
     public CarritoController(CarritoService carritoService) {
         this.carritoService = carritoService;
+    }
+
+    @PostMapping("agregar/{idProducto}/{cantidad}")
+    public ResponseEntity<String> agregarProductoAlCarrito(
+            @PathVariable long idProducto,
+            @PathVariable int cantidad) {
+        carritoService.añadirProductoAlCarrrito(idProducto, cantidad);
+        return ResponseEntity.ok("Producto añadido al carrito correctamente.");
+    }
+
+    @DeleteMapping("retirar/{idProducto}")
+    public ResponseEntity<String> retirarProductoDelCarrito(
+            @PathVariable long idProducto) {
+        carritoService.retirarDelCarrito(idProducto);
+        return ResponseEntity.ok("Producto retirado del carrito correctamente.");
     }
 
     @GetMapping("/{id}")
