@@ -8,6 +8,7 @@ import { Eventos } from './eventos/eventos';
 import { AdminAgregar } from './admin-agregar/admin-agregar';
 import { ColeccionComponent } from './colecciones/coleccion/coleccion';
 import { AuthGuardGuard } from './service/auth-guard-guard';
+import { AdminProductos } from './admin-productos/admin-productos';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -17,5 +18,7 @@ export const routes: Routes = [
   { path: 'contacto', component: Contacto },
   { path: 'eventos', component: Eventos },
   { path: 'admin-agregar', component: AdminAgregar, canActivate: [AuthGuardGuard] },
-  { path: 'coleccion/:nombre', component: ColeccionComponent }
+  { path: 'admin-productos', component: AdminProductos, canActivate: [AuthGuardGuard] },
+  { path: 'coleccion/:nombre', component: ColeccionComponent },
+  { path: '**', redirectTo: '' }
 ];

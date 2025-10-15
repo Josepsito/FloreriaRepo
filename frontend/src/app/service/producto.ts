@@ -5,12 +5,14 @@ import { Observable } from 'rxjs';
 
 // Interfaz para tipar el producto
 export interface Producto {
+  id?: number;
   nombre: string;
   descripcion: string;
   precio: number;
   stock: number;
   coleccion?: string;
   imagenURL: string;
+  categoria?: any;
 }
 
 @Injectable({
@@ -18,7 +20,7 @@ export interface Producto {
 })
 export class ProductoService {
 
-  private apiUrl = 'http://localhost:8080/api/productos'; // Ajusta si tu backend usa otro puerto
+  private apiUrl = 'http://localhost:8080/api/productos';
 
   constructor(private http: HttpClient) { }
 
@@ -33,6 +35,11 @@ export class ProductoService {
   obtenerProductoPorId(id: number): Observable<Producto> {
     return this.http.get<Producto>(`${this.apiUrl}/${id}`);
   }
+
+  actualizarProducto(id: number, producto: Partial<Producto>): Observable<Producto> {
+    return this.http.put<Producto>(`${this.apiUrl}/${id}`, producto);
+  }
+
 
   eliminarProducto(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);

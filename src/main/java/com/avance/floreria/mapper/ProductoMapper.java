@@ -25,6 +25,7 @@ public class ProductoMapper {
 
     public ProductoResponseDTO toDTO(Producto producto) {
         return new ProductoResponseDTO(
+                producto.getId(),
                 producto.getNombre(),
                 producto.getDescripcion(),
                 producto.getPrecio(),

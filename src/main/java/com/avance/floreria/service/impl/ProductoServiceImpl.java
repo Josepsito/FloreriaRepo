@@ -5,6 +5,7 @@ import com.avance.floreria.dto.response.ProductoResponseDTO;
 import com.avance.floreria.entity.Categoria;
 import com.avance.floreria.entity.Producto;
 import com.avance.floreria.repository.CategoriaRepository;
+import com.avance.floreria.repository.DetallePedidoRepository;
 import com.avance.floreria.repository.ProductoRepository;
 import com.avance.floreria.service.ProductoService;
 import org.springframework.stereotype.Service;
@@ -18,10 +19,15 @@ public class ProductoServiceImpl implements ProductoService {
 
     private final ProductoRepository productoRepository;
     private final CategoriaRepository categoriaRepository;
+    private final DetallePedidoRepository detallePedidoRepository;
 
-    public ProductoServiceImpl(ProductoRepository productoRepository, CategoriaRepository categoriaRepository) {
+    public ProductoServiceImpl(
+            ProductoRepository productoRepository,
+            CategoriaRepository categoriaRepository,
+            DetallePedidoRepository detallePedidoRepository) {
         this.productoRepository = productoRepository;
         this.categoriaRepository = categoriaRepository;
+        this.detallePedidoRepository = detallePedidoRepository;
     }
 
     @Override
@@ -41,6 +47,9 @@ public class ProductoServiceImpl implements ProductoService {
 
     @Override
     public void eliminarProductoPorID(Long id) {
+        if (detallePedidoRepository.existsByProductoId(id)) {
+            throw new RuntimeException("No se puede eliminar el producto porque está asociado a pedidos existentes.");
+        }
         productoRepository.deleteById(id);
     }
 
@@ -92,6 +101,7 @@ public class ProductoServiceImpl implements ProductoService {
 
     private ProductoResponseDTO mapToDTO(Producto producto) {
         return new ProductoResponseDTO(
+                producto.getId(),
                 producto.getNombre(),
                 producto.getDescripcion(),
                 producto.getPrecio(),
