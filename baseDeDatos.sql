@@ -85,19 +85,20 @@ VALUES
 
 INSERT INTO Productos (nombre, descripcion, precio, stock, imagenURL, categoriaid)
 VALUES
-('Ramo de rosas', 'Ramo de rosas rosadas', 25.00, 10, 'https://i0.wp.com/floresyregalosmx.com/wp-content/uploads/Captura-de-pantalla-2024-12-27-a-las-6.16.39%E2%80%AFp.m.png?fit=600%2C780&ssl=1', 2),
-('Cesta floral', 'Cesta de flores para cumpleaños', 45, 5, 'https://undetalle.com.pe/wp-content/uploads/2023/08/cesta-de-pino-con-24-rosas-mix.webp', 2),
-('Tulipanes', 'Conjunto de tulipanes', 32, 20, 'https://undetalle.com.pe/wp-content/uploads/2023/08/arreglo-de-12-tulipanes-mix.webp', 3),
-('Planta felicidad', 'Planta pequeña de felicidad', 33.50, 35, 'https://undetalle.com.pe/wp-content/uploads/2024/09/plantita-de-felicidad-con-foto.webp', 3),
-('Arreglo funerario', 'Arreglo funerario de 2 flores', 30.50, 5, 'https://floreriabellas.com/wp-content/uploads/2019/07/corona-funebre-8.jpg', 4),
-('Corona fúnebre ', 'Corona para difuntos', 30.50, 5, 'https://www.enviafloresfunebres.com/imagenes/imgproducto/500coronas-para-difuntos-chico-2.jpg', 4),
-('Girasoles', 'Girasoles para San valentín', 25, 5, 'https://magia.pe/cdn/shop/files/magia-pe-box-guinda-girasoles-2_ae4c68bb-3e18-48a8-817d-d2b2704d4f09_900x.jpg?v=1737759235', 5),
-('Ramo de rosas', 'Ramo de rosas para tu pareja', 25, 5, 'https://undetalle.com.pe/wp-content/uploads/2025/01/ramo-de-15-rosas-rojas.webp', 5),
-('Ramo de rosas y astromelias', 'Ramo conjunto de rosas y astromelias', 25, 5, 'https://lamour.pe/cdn/shop/files/Ramo-de-Rosas-y-Astromelias-Destellos-1.jpg?v=1736607777&width=1080', 6),
-('Flores rosas y blancas', 'Conjunto de flores rosas y blancas', 30, 20, 'https://alore.pe/wp-content/uploads/2025/04/Caja-de-flores-para-mama-con-chocolates-500x667.webp', 6),
-('Rosas azules', 'Arreglo de 12 rosas', 30.50, 5, 'https://undetalle.com.pe/wp-content/uploads/2024/12/florero-de-12-rosas-azules.webp', 7),
-('Hortensias azules', 'Arreglo de hortensias azules', 30.50, 5, 'https://alirosas.pe/wp-content/uploads/2021/06/hortensiasglobo.jpg', 7),
-('Ramo de girasoles', 'Ramo de girasoles ', 30.50, 5, 'https://floreriamiraflores.com/wp-content/uploads/2024/07/32-1-800x800.jpg', 8),
-('Flores amarillas', 'Flores amarillas variadas', 30.50, 5, 'https://d20f60vzbd93dl.cloudfront.net/uploads/tienda_014965/tienda_014965_07e948bee075681400cd86a42104471acfd29e8a_producto_large_90.jpeg', 8),
-('Ramo de tulipanes', 'Tulipanes de varios colores', 30.50, 5, 'https://floresyservicios.com/wp-content/uploads/2020/04/91--300x300.jpg', 9),
-('Nombre del producto 14', 'Descripción del producto 2', 30.50, 5, 'https://latinflores.com/cdn/shop/files/mixfloral_afb9e1d9-c090-49c4-aa80-c7a7a5549db5.jpg?v=1746629975&width=533', 9);
+('Ramo de rosas', 'Ramo de rosas rosadas', 25.00, 10, 'https://i0.wp.com/floresyregalosmx.com/wp-content/uploads/Captura-de-pantalla-2024-12-27-a-las-6.16.39%E2%80%AFp.m.png?fit=600%2C780&ssl=1', 1),
+('Cesta floral', 'Cesta de flores para cumpleaños', 45, 5, 'https://undetalle.com.pe/wp-content/uploads/2023/08/cesta-de-pino-con-24-rosas-mix.webp', 1),
+('Tulipanes', 'Conjunto de tulipanes', 32, 20, 'https://undetalle.com.pe/wp-content/uploads/2023/08/arreglo-de-12-tulipanes-mix.webp', 2),
+('Planta felicidad', 'Planta pequeña de felicidad', 33.50, 35, 'https://undetalle.com.pe/wp-content/uploads/2024/09/plantita-de-felicidad-con-foto.webp', 2),
+('Arreglo funerario', 'Arreglo funerario de 2 flores', 30.50, 5, 'https://floreriabellas.com/wp-content/uploads/2019/07/corona-funebre-8.jpg', 3),
+('Corona fúnebre ', 'Corona para difuntos', 30.50, 5, 'https://www.enviafloresfunebres.com/imagenes/imgproducto/500coronas-para-difuntos-chico-2.jpg', 3),
+('Girasoles', 'Girasoles para San valentín', 25, 5, 'https://magia.pe/cdn/shop/files/magia-pe-box-guinda-girasoles-2_ae4c68bb-3e18-48a8-817d-d2b2704d4f09_900x.jpg?v=1737759235', 4),
+('Ramo de rosas', 'Ramo de rosas para tu pareja', 25, 5, 'https://undetalle.com.pe/wp-content/uploads/2025/01/ramo-de-15-rosas-rojas.webp', 4),
+('Ramo de rosas y astromelias', 'Ramo conjunto de rosas y astromelias', 25, 5, 'https://lamour.pe/cdn/shop/files/Ramo-de-Rosas-y-Astromelias-Destellos-1.jpg?v=1736607777&width=1080', 5),
+('Flores rosas y blancas', 'Conjunto de flores rosas y blancas', 30, 20, 'https://alore.pe/wp-content/uploads/2025/04/Caja-de-flores-para-mama-con-chocolates-500x667.webp', 5),
+('Rosas azules', 'Arreglo de 12 rosas', 30.50, 5, 'https://undetalle.com.pe/wp-content/uploads/2024/12/florero-de-12-rosas-azules.webp', 6),
+('Hortensias azules', 'Arreglo de hortensias azules', 30.50, 5, 'https://alirosas.pe/wp-content/uploads/2021/06/hortensiasglobo.jpg', 6),
+('Ramo de girasoles', 'Ramo de girasoles ', 30.50, 5, 'https://floreriamiraflores.com/wp-content/uploads/2024/07/32-1-800x800.jpg', 7),
+('Flores amarillas', 'Flores amarillas variadas', 30.50, 5, 'https://d20f60vzbd93dl.cloudfront.net/uploads/tienda_014965/tienda_014965_07e948bee075681400cd86a42104471acfd29e8a_producto_large_90.jpeg', 7),
+('Ramo de tulipanes', 'Tulipanes de varios colores', 30.50, 5, 'https://floresyservicios.com/wp-content/uploads/2020/04/91--300x300.jpg', 8),
+('Nombre del producto 14', 'Descripción del producto 2', 30.50, 5, 'https://latinflores.com/cdn/shop/files/mixfloral_afb9e1d9-c090-49c4-aa80-c7a7a5549db5.jpg?v=1746629975&width=533', 8)
+;
