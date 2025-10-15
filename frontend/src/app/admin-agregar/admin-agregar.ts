@@ -46,7 +46,6 @@ export class AdminAgregar implements OnInit {
     this.cargarCategorias();
   }
 
-  // Cargar categorías
   cargarCategorias(): void {
     this.categoriaService.obtenerCategorias().subscribe({
       next: (cats: Categoria[]) => this.categorias = cats,
@@ -54,7 +53,6 @@ export class AdminAgregar implements OnInit {
     });
   }
 
-  // Agregar nueva categoría
   agregarCategoria(): void {
     const { nombre, descripcion, imagenURL, imagenSecundariaURL } = this.nuevaCategoria;
 
