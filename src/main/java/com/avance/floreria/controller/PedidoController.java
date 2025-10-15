@@ -28,6 +28,12 @@ public class PedidoController {
         return ResponseEntity.ok(nuevoPedido);
     }
 
+    @PostMapping("/comprarCarrito")
+    public ResponseEntity<String> comprarProductosDelCarrito() {
+        pedidoService.comprarProductosDelCarrito();
+        return ResponseEntity.ok("Se realizo la compra correctamente");
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarPedido(@PathVariable long id) {
         pedidoService.eliminarPedidoPorID(id);

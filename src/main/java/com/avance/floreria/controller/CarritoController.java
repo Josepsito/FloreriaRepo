@@ -38,7 +38,7 @@ public class CarritoController {
         return ResponseEntity.ok(carritoService.findById(id));
     }
 
-    @GetMapping()
+    @GetMapping
     public  ResponseEntity<List<CarritoResponseDTO>> verTodosLosCarritos(){
         return ResponseEntity.ok(carritoService.findAll());
     }

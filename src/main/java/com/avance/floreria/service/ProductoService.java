@@ -15,5 +15,7 @@ public interface ProductoService {
 
     ProductoResponseDTO nuevoProducto(ProductoRequestDTO productoDTO);
 
+    ProductoResponseDTO actualizarProducto(Long id, ProductoRequestDTO dto);
+
     List<ProductoResponseDTO> obtenerPorCategoria(String nombreCategoria);
 }

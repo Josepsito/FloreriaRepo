@@ -62,6 +62,26 @@ public class ProductoServiceImpl implements ProductoService {
     }
 
     @Override
+    public ProductoResponseDTO actualizarProducto(Long id, ProductoRequestDTO dto) {
+        Producto productoExistente = productoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Producto no encontrado con ID: " + id));
+
+        Categoria categoria = categoriaRepository.findById(dto.categoriaID())
+                .orElseThrow(() -> new RuntimeException("Categoría no encontrada con ID: " + dto.categoriaID()));
+
+        productoExistente.setNombre(dto.nombre());
+        productoExistente.setDescripcion(dto.descripcion());
+        productoExistente.setPrecio(BigDecimal.valueOf(dto.precio()));
+        productoExistente.setStock(dto.stock());
+        productoExistente.setImagenURL(dto.imagenURL());
+        productoExistente.setCategoria(categoria);
+
+        Producto productoActualizado = productoRepository.save(productoExistente);
+
+        return mapToDTO(productoActualizado);
+    }
+
+    @Override
     public List<ProductoResponseDTO> obtenerPorCategoria(String nombreCategoria) {
         return productoRepository.findAll()
                 .stream()

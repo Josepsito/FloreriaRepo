@@ -33,13 +33,19 @@ public class ProductoController {
         return ResponseEntity.ok(productoService.nuevoProducto(productoDTO));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<ProductoResponseDTO> actualizarProducto(
+            @PathVariable Long id,
+            @RequestBody ProductoRequestDTO dto) {
+        return ResponseEntity.ok(productoService.actualizarProducto(id, dto));
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarProducto(@PathVariable Long id) {
         productoService.eliminarProductoPorID(id);
         return ResponseEntity.noContent().build();
     }
 
-    // NUEVO ENDPOINT: productos por categoría
     @GetMapping("/categoria/{nombre}")
     public ResponseEntity<List<ProductoResponseDTO>> obtenerPorCategoria(@PathVariable String nombre) {
         List<ProductoResponseDTO> productos = productoService.obtenerPorCategoria(nombre);
