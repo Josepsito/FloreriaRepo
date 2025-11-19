@@ -19,26 +19,29 @@
 <section id="categorias" class="py-12 container mx-auto">
   <h2 class="text-3xl font-bold text-center mb-8">Categorías</h2>
   <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-    <div class="text-center">
-      <img src="https://i.postimg.cc/MKXQkcwR/floreros.png"
-           class="rounded-xl shadow">
-      <p class="mt-2 font-semibold">Floreros</p>
-    </div>
-    <div class="text-center">
-      <img src="https://i.postimg.cc/vHLHNbgP/cajas.png"
-           class="rounded-xl shadow">
-      <p class="mt-2 font-semibold">Cajas</p>
-    </div>
-    <div class="text-center">
-      <img src="https://i.postimg.cc/mrTZsqMF/ramos.png"
-           class="rounded-xl shadow">
-      <p class="mt-2 font-semibold">Ramos</p>
-    </div>
-    <div class="text-center">
-      <img src="https://www.misflorescali.com/flores/wp-content/uploads/2020/12/descarga-48.jpg"
-           class="rounded-xl shadow">
-      <p class="mt-2 font-semibold">Arreglos</p>
-    </div>
+    <!-- CUMPLEAÑOS -->
+    <a [routerLink]="['/coleccion', 'CUMPLEAÑOS']" class="text-center block cursor-pointer">
+      <img src="https://i.postimg.cc/MKXQkcwR/floreros.png" class="rounded-xl shadow">
+      <p class="mt-2 font-semibold">CUMPLEAÑOS</p>
+    </a>
+
+    <!-- ANIVERSARIO -->
+    <a [routerLink]="['/coleccion', 'ANIVERSARIO']" class="text-center block cursor-pointer">
+      <img src="https://i.postimg.cc/vHLHNbgP/cajas.png" class="rounded-xl shadow">
+      <p class="mt-2 font-semibold">ANIVERSARIO</p>
+    </a>
+
+    <!-- SAN VALENTIN -->
+    <a [routerLink]="['/coleccion', 'SAN VALENTÍN']" class="text-center block cursor-pointer">
+      <img src="https://i.postimg.cc/mrTZsqMF/ramos.png" class="rounded-xl shadow">
+      <p class="mt-2 font-semibold">SAN VALENTÍN</p>
+    </a>
+
+    <!-- FUNERALES -->
+    <a [routerLink]="['/coleccion', 'FUNERALES']" class="text-center block cursor-pointer">
+      <img src="https://www.misflorescali.com/flores/wp-content/uploads/2020/12/descarga-48.jpg" class="rounded-xl shadow">
+      <p class="mt-2 font-semibold">FUNERALES</p>
+    </a>
   </div>
 </section>
 
