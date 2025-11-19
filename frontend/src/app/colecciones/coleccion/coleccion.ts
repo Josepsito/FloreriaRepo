@@ -87,4 +87,21 @@ export class ColeccionComponent implements OnInit {
     console.log('Agregar al carrito', producto, this.cantidadSeleccionada);
     // Aplicar lógica
   }
+  abrirWhatsApp(producto: Producto, cantidad: number = 1) {
+    const numero = "51962739321";
+
+    const mensaje = `
+    Hola, quisiera más información o comprar:
+    *${producto.nombre}*
+    Precio: S/ ${producto.precio}
+    Cantidad: ${cantidad}
+    ¿Está disponible?
+      `.trim();
+
+    const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+
+    window.open(url, "_blank");
+  }
+
+
 }
