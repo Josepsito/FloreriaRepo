@@ -21,12 +21,12 @@ export class Contacto {
     const asunto = (document.getElementById('asunto') as HTMLInputElement)?.value;
     const mensaje = (document.getElementById('mensaje') as HTMLTextAreaElement)?.value;
 
-    const telefonoDestino = "51962739321"; //
+    const telefonoDestino = "51962739321";
 
-    const texto = Hola, soy ${nombre}.
-    Correo: ${email}
-    Asunto: ${asunto}
-    Mensaje: ${mensaje};
+    const texto = `Hola, soy ${nombre}.
+Correo: ${email}
+Asunto: ${asunto}
+Mensaje: ${mensaje}`;
 
     const url = `https://wa.me/${telefonoDestino}?text=${encodeURIComponent(texto)}`;
 
