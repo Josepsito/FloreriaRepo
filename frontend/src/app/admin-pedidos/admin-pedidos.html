@@ -1,0 +1,95 @@
+<div class="bg-gray-100 min-h-screen text-gray-800 p-4">
+
+  <header class="bg-white shadow p-4 flex justify-between items-center sticky top-0 z-50 mb-8">
+    <h1 class="text-2xl font-bold flex items-center gap-2">
+      <span class="material-symbols-outlined text-green-600 text-3xl">potted_plant</span>
+      Administrador - Jardín Secreto
+    </h1>
+
+    <div class="flex items-center gap-4 text-gray-600">
+      <a [routerLink]="['/admin-agregar']" class="p-2 hover:bg-gray-200 rounded-full">
+        <span class="material-symbols-outlined text-2xl text-green-600">add_circle</span>
+      </a>
+      <a [routerLink]="['/admin-productos']" class="p-2 hover:bg-gray-200 rounded-full">
+        <span class="material-symbols-outlined text-2xl text-green-600">inventory_2</span>
+      </a>
+      <a [routerLink]="['/admin-pedidos']" class="p-2 hover:bg-gray-200 rounded-full">
+        <span class="material-symbols-outlined text-2xl text-green-600">receipt_long</span>
+      </a>
+      <button (click)="cerrarSesion()" class="p-2 hover:bg-gray-200 rounded-full text-red-600">
+        <span class="material-symbols-outlined text-2xl">logout</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+    <div class="bg-gray-200 p-4 rounded-xl text-center cursor-pointer"
+         [ngClass]="{'ring-4 ring-gray-400': filtroEstado==='Pendiente'}"
+         (click)="toggleFiltro('Pendiente')">
+      <p class="font-bold text-gray-800">Pendientes</p>
+      <p class="text-2xl font-bold text-gray-800">{{ pendientesCount }}</p>
+    </div>
+
+    <div class="bg-yellow-200 p-4 rounded-xl text-center cursor-pointer"
+         [ngClass]="{'ring-4 ring-yellow-600': filtroEstado==='Pagado'}"
+         (click)="toggleFiltro('Pagado')">
+      <p class="font-bold text-yellow-800">Pagados</p>
+      <p class="text-2xl font-bold text-yellow-800">{{ pagadosCount }}</p>
+    </div>
+
+    <div class="bg-green-200 p-4 rounded-xl text-center cursor-pointer"
+         [ngClass]="{'ring-4 ring-green-600': filtroEstado==='Enviado'}"
+         (click)="toggleFiltro('Enviado')">
+      <p class="font-bold text-green-800">Enviados</p>
+      <p class="text-2xl font-bold text-green-800">{{ enviadosCount }}</p>
+    </div>
+  </div>
+
+  <h2 class="text-2xl font-bold mb-6 text-center">Pedidos</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+    <div *ngFor="let pedido of pedidosFiltrados" class="bg-white rounded-xl shadow-lg p-4">
+      <h3 class="font-semibold text-lg"
+          [ngClass]="{
+            'text-gray-800': pedido.estado==='Pendiente',
+            'text-yellow-800': pedido.estado==='Pagado',
+            'text-green-800': pedido.estado==='Enviado'
+          }">
+        Pedido ID: {{ pedido.id }}
+      </h3>
+
+      <p class="text-gray-600 text-sm mt-1">Total: S/ {{ pedido.total }}</p>
+      <p class="text-gray-600 text-sm mt-1">Fecha: {{ pedido.fecha | date:'short' }}</p>
+
+      <ul class="mt-3 mb-3 border-t border-gray-200 pt-2">
+        <li *ngFor="let item of pedido.items" class="text-gray-700 text-sm">
+          {{ item.producto.nombre }} x{{ item.cantidad }} - S/ {{ item.producto.precio * item.cantidad }}
+        </li>
+      </ul>
+
+      <p class="mb-2">Estado actual:
+        <span class="font-semibold"
+              [ngClass]="{
+                'text-gray-800': pedido.estado==='Pendiente',
+                'text-yellow-800': pedido.estado==='Pagado',
+                'text-green-800': pedido.estado==='Enviado'
+              }">
+          {{ pedido.estado }}
+        </span>
+      </p>
+
+      <div class="flex flex-wrap gap-2">
+        <button *ngFor="let estado of estados"
+                (click)="cambiarEstado(pedido.id, estado)"
+                [ngClass]="{
+                  'bg-gray-200 text-gray-800': estado==='Pendiente',
+                  'bg-yellow-200 text-yellow-800': estado==='Pagado',
+                  'bg-green-200 text-green-800': estado==='Enviado'
+                }"
+                class="px-2 py-1 rounded-full text-sm cursor-pointer hover:bg-gray-300">
+          {{ estado }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>
