@@ -4,6 +4,7 @@ import { Router, RouterModule } from '@angular/router';
 import Swal from 'sweetalert2';
 import { ProductoService, Producto } from '../service/producto';
 import { UsuarioService } from '../service/usuario';
+import { CategoriaService, Categoria } from '../service/categoria';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -16,21 +17,32 @@ import { FormsModule } from '@angular/forms';
 export class AdminProductos implements OnInit {
 
   productos: Producto[] = [];
+  categorias: Categoria[] = [];
   loading: boolean = true;
   defaultImg: string = 'https://static.vecteezy.com/system/resources/previews/004/141/669/non_2x/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg';
 
   editandoId: number | null = null;
   productoEditado: Partial<Producto> = {};
 
+  categoriaSeleccionada: number | null = null;
+
   constructor(
     private productoService: ProductoService,
+    private categoriaService: CategoriaService,
     private usuarioService: UsuarioService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
     this.cargarProductos();
+    this.cargarCategorias();
   }
+
+  cargarCategorias(): void {
+      this.categoriaService.obtenerCategorias().subscribe({
+        next: (res) => this.categorias = res,
+        error: (err) => console.error('Error cargando categorías', err)
+      });}
 
   cargarProductos(): void {
     this.loading = true;
@@ -93,16 +105,26 @@ export class AdminProductos implements OnInit {
     const producto = this.productos.find(p => p.id === id);
     if (producto) {
       this.productoEditado = { ...producto };
+      this.categoriaSeleccionada = producto.categoria?.id ?? null;
     }
   }
 
   cancelarEdicion(): void {
     this.editandoId = null;
     this.productoEditado = {};
+    this.categoriaSeleccionada = null;
   }
 
   guardarEdicion(id: number): void {
     if (!this.productoEditado) return;
+
+    const categoria = this.categorias.find(
+      c => c.id === this.categoriaSeleccionada
+    );
+
+    if (categoria) {
+      this.productoEditado.categoria = categoria;
+    }
 
     const dto = {
       nombre: this.productoEditado.nombre!,
@@ -110,7 +132,7 @@ export class AdminProductos implements OnInit {
       precio: this.productoEditado.precio!,
       stock: this.productoEditado.stock!,
       imagenURL: this.productoEditado.imagenURL!,
-      categoriaID: this.productoEditado.categoria?.id || 1
+      categoriaID: this.categoriaSeleccionada
     };
 
     this.productoService.actualizarProducto(id, dto).subscribe({

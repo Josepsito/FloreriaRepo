@@ -49,6 +49,13 @@
                    class="w-full mb-1 p-1 border rounded">
             <input [(ngModel)]="productoEditado.imagenURL" placeholder="URL de la imagen"
                    class="w-full mb-1 p-1 border rounded">
+            <select [(ngModel)]="categoriaSeleccionada"
+                    class="w-full mb-1 p-1 border rounded">
+              <option *ngFor="let cat of categorias" [value]="cat.id">
+                {{ cat.nombre }}
+              </option>
+            </select>
+
 
             <div class="flex justify-end gap-2 mt-3">
               <button class="p-2 hover:bg-gray-200 rounded-full bg-green-100"
