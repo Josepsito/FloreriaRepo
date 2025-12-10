@@ -5,10 +5,11 @@ import { Blog } from './blog/blog';
 import { Novias } from './novias/novias';
 import { Contacto } from './contacto/contacto';
 import { Eventos } from './eventos/eventos';
-import { AdminAgregar } from './admin-agregar/admin-agregar';
 import { ColeccionComponent } from './colecciones/coleccion/coleccion';
 import { AuthGuardGuard } from './service/auth-guard-guard';
+import { AdminAgregar } from './admin-agregar/admin-agregar';
 import { AdminProductos } from './admin-productos/admin-productos';
+import { AdminPedidos } from './admin-pedidos/admin-pedidos';
 import { Carrito } from './carrito/carrito';
 
 export const routes: Routes = [
@@ -20,6 +21,7 @@ export const routes: Routes = [
   { path: 'eventos', component: Eventos },
   { path: 'admin-agregar', component: AdminAgregar, canActivate: [AuthGuardGuard] },
   { path: 'admin-productos', component: AdminProductos, canActivate: [AuthGuardGuard] },
+  { path: 'admin-pedidos', component: AdminPedidos, canActivate: [AuthGuardGuard] },
   { path: 'carrito', component: Carrito },
   { path: 'coleccion/:nombre', component: ColeccionComponent },
   { path: '**', redirectTo: '' }
