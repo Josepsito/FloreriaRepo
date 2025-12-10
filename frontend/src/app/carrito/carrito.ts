@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { CarritoService, ItemCarrito } from '../service/carrito-service';
-import { RouterModule } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { Header } from '../shared/header/header';
 import { Footer } from '../shared/footer/footer';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { CarritoService, ItemCarrito } from '../service/carrito-service';
 
 @Component({
   selector: 'app-carrito',
@@ -12,8 +12,7 @@ import { Footer } from '../shared/footer/footer';
   templateUrl: './carrito.html',
   styleUrls: ['./carrito.css'],
 })
-export class Carrito {
-
+export class Carrito implements OnInit {
   items: ItemCarrito[] = [];
   total: number = 0;
 
@@ -27,18 +26,12 @@ export class Carrito {
   }
 
   aumentar(item: ItemCarrito) {
-    this.carritoService.cambiarCantidad(
-      item.producto.id!,
-      item.cantidad + 1
-    );
+    this.carritoService.cambiarCantidad(item.producto.id!, item.cantidad + 1);
   }
 
   disminuir(item: ItemCarrito) {
     if (item.cantidad > 1) {
-      this.carritoService.cambiarCantidad(
-        item.producto.id!,
-        item.cantidad - 1
-      );
+      this.carritoService.cambiarCantidad(item.producto.id!, item.cantidad - 1);
     }
   }
 
@@ -53,18 +46,21 @@ export class Carrito {
   comprarTodo() {
     if (this.items.length === 0) return;
 
-    const numero = "51962739321";
+    const itemsParaPedido = [...this.items];
+    const totalParaPedido = this.total;
 
+    const numero = "51962739321";
     let mensaje = "Hola, quiero comprar estos productos:%0A%0A";
 
-    this.items.forEach(item => {
+    itemsParaPedido.forEach(item => {
       mensaje += `• ${item.producto.nombre} x${item.cantidad} - S/ ${item.producto.precio * item.cantidad}%0A`;
     });
 
-    mensaje += `%0ATotal: S/ ${this.total}`;
-
+    mensaje += `%0ATotal: S/ ${totalParaPedido}`;
     const url = `https://wa.me/${numero}?text=${mensaje}`;
-
     window.open(url, "_blank");
+
+    this.carritoService.crearPedido();
   }
+
 }
